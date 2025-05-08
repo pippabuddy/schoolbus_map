@@ -16,8 +16,8 @@
 
   <script>
     const positions = [
-      { name: "시목초등학교", coord: [126.24535984063, 36.7689009584858] }, // 출발지
-      { name: "측후소아파트", coord: [126.282455201869, 36.7594352043473 },
+      { name: "시목초등학교", coord: [126.2178, 36.7729] }, // 출발지
+      { name: "측후소아파트", coord: [126.2965, 36.7515] },
       { name: "농협하나로마트 서부점", coord: [126.4490, 36.7945] },
       { name: "소망교회", coord: [126.4500, 36.7800] },
       { name: "미소지움아파트", coord: [126.3102, 36.7234] },
@@ -59,9 +59,9 @@
     // 출발지, 목적지, 경유지 좌표 추출
     const origin = positions[0].coord.join(','); // 출발
     const destination = positions[positions.length - 1].coord.join(','); // 도착
-    const waypoints = positions.slice(1, -1).map(p => p.coord.join(',')).join('|');
+    const waypoints = positions.slice(1, -1).map(p => p.coord.join(',')).join('|'); // 경유지들
 
-    // REST API 호출
+    // 카카오 모빌리티 REST API 호출
     fetch(`https://apis-navi.kakaomobility.com/v1/directions?origin=${origin}&destination=${destination}&waypoints=${waypoints}&priority=RECOMMEND`, {
       method: "GET",
       headers: {
