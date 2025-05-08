@@ -8,400 +8,96 @@
   </style>
 </head>
 <body>
-  curl -v -X POST "https://apis-navi.kakaomobility.com/v1/waypoints/directions" \
--H "Content-Type: application/json" \
--H "Authorization: KakaoAK ${05f7822ea133ae0026dca0368c8ce751}" \ // 카카오디벨로퍼스에서 발급 받은 API 키 값
--d '{
-    "origin": {
-        "x": "127.11024293202674",
-        "y": " 37.394348634049784",
-        "angle": 270
-    },
-    "destination": {
-        "x": "127.10860518470294",
-        "y": "37.401999820065534"
-    },
-    "waypoints": [
-        {
-            "name": "name0",
-            "x": 127.11341936045922,
-            "y": 37.39639094915999
-        }
-    ],
-    "priority": "RECOMMEND",
-    "car_fuel": "GASOLINE",
-    "car_hipass": false,
-    "alternatives": false,
-    "road_details": false,
-    "summary": false
-}'
-{
-    "trans_id": "0194de353ee97a56a7807b8a505eb4da",
-    "routes": [
-        {
-            "result_code": 0,
-            "result_msg": "길찾기 성공",
-            "summary": {
-                "origin": {
-                    "name": "",
-                    "x": 127.11023403583478,
-                    "y": 37.39434769502827
-                },
-                "destination": {
-                    "name": "",
-                    "x": 127.10859622855493,
-                    "y": 37.40199450213265
-                },
-                "waypoints": [
-                    {
-                        "name": "name0",
-                        "x": 127.11341740484119,
-                        "y": 37.39639001677204
-                    }
-                ],
-                "priority": "RECOMMEND",
-                "bound": {
-                    "min_x": 127.10873060789754,
-                    "min_y": 37.39446252338457,
-                    "max_x": 127.11400101911747,
-                    "max_y": 37.402458630852735
-                },
-                "fare": {
-                    "taxi": 6600,
-                    "toll": 0
-                },
-                "distance": 2193,
-                "duration": 574
-            },
-            "sections": [
-                {
-                    "distance": 1074,
-                    "duration": 280,
-                    "bound": {
-                        "min_x": 127.11341931516797,
-                        "min_y": 37.394469584427156,
-                        "max_x": 127.11406301821938,
-                        "max_y": 37.398332068681995
-                    },
-                    "roads": [
-                        {
-                            "name": "",
-                            "distance": 22,
-                            "duration": 5,
-                            "traffic_speed": 16.0,
-                            "traffic_state": 0,
-                            "vertexes": [
-                                127.10991634747967,
-                                37.39447145478345,
-                                127.10966790676201,
-                                37.394469584427156
-                            ]
-                        },
-                        {
-                            "name": "판교역로",
-                            "distance": 364,
-                            "duration": 97,
-                            "traffic_speed": 27.0,
-                            "traffic_state": 3,
-                            "vertexes": [
-                                127.10966790676201,
-                                37.394469584427156,
-                                127.10967141980313,
-                                37.39512739646385,
-                                127.10968100356395,
-                                37.396226781360426,
-                                127.10967417816033,
-                                37.39775855885587
-                            ]
-                        },
-                        {
-                            "name": "판교역로192번길",
-                            "distance": 398,
-                            "duration": 113,
-                            "traffic_speed": 23.0,
-                            "traffic_state": 3,
-                            "vertexes": [
-                                127.10967417816033,
-                                37.39775855885587,
-                                127.10991144303469,
-                                37.39775133437272,
-                                127.11030660039278,
-                                37.39776331905757,
-                                127.11058861237368,
-                                37.39779247292587,
-                                127.11190492731849,
-                                37.39822587238842,
-                                127.11217511696259,
-                                37.39829998747621,
-                                127.11242335797999,
-                                37.39831987264784,
-                                127.11275097123547,
-                                37.39831332063064,
-                                127.1130784782746,
-                                37.3983157776669,
-                                127.11404960021814,
-                                37.398332068681995
-                            ]
-                        },
-                        {
-                            "name": "",
-                            "distance": 233,
-                            "duration": 39,
-                            "traffic_speed": 42.0,
-                            "traffic_state": 0,
-                            "vertexes": [
-                                127.11404960021814,
-                                37.398332068681995,
-                                127.11403422576758,
-                                37.39771922184463,
-                                127.11406301821938,
-                                37.39623266200683
-                            ]
-                        },
-                        {
-                            "name": "대왕판교로606번길",
-                            "distance": 57,
-                            "duration": 26,
-                            "traffic_speed": 17.0,
-                            "traffic_state": 2,
-                            "vertexes": [
-                                127.11406301821938,
-                                37.39623266200683,
-                                127.11341931516797,
-                                37.39622783738649
-                            ]
-                        }
-                    ],
-                    "guides": [
-                        {
-                            "name": "출발지",
-                            "x": 127.10991634747967,
-                            "y": 37.39447145478345,
-                            "distance": 0,
-                            "duration": 0,
-                            "type": 100,
-                            "guidance": "출발지",
-                            "road_index": 0
-                        },
-                        {
-                            "name": "",
-                            "x": 127.10966790676201,
-                            "y": 37.394469584427156,
-                            "distance": 22,
-                            "duration": 5,
-                            "type": 2,
-                            "guidance": "우회전",
-                            "road_index": 1
-                        },
-                        {
-                            "name": "",
-                            "x": 127.10967417816033,
-                            "y": 37.39775855885587,
-                            "distance": 364,
-                            "duration": 97,
-                            "type": 2,
-                            "guidance": "광장로 방면으로 우회전",
-                            "road_index": 2
-                        },
-                        {
-                            "name": "",
-                            "x": 127.11404960021814,
-                            "y": 37.398332068681995,
-                            "distance": 398,
-                            "duration": 113,
-                            "type": 2,
-                            "guidance": "백현동 방면으로 우회전",
-                            "road_index": 3
-                        },
-                        {
-                            "name": "",
-                            "x": 127.11406301821938,
-                            "y": 37.39623266200683,
-                            "distance": 233,
-                            "duration": 39,
-                            "type": 2,
-                            "guidance": "판교테크노밸리 양재 내곡 방면으로 우회전",
-                            "road_index": 4
-                        },
-                        {
-                            "name": "경유지",
-                            "x": 127.11341931516797,
-                            "y": 37.39622783738649,
-                            "distance": 57,
-                            "duration": 26,
-                            "type": 1000,
-                            "guidance": "경유지",
-                            "road_index": -1
-                        }
-                    ]
-                },
-                {
-                    "distance": 1119,
-                    "duration": 294,
-                    "bound": {
-                        "min_x": 127.10863660151416,
-                        "min_y": 37.39622538141045,
-                        "max_x": 127.11341931516797,
-                        "max_y": 37.40242613861426
-                    },
-                    "roads": [
-                        {
-                            "name": "대왕판교로606번길",
-                            "distance": 29,
-                            "duration": 6,
-                            "traffic_speed": 17.0,
-                            "traffic_state": 2,
-                            "vertexes": [
-                                127.11341931516797,
-                                37.39622783738649,
-                                127.11309181718316,
-                                37.39622538141045
-                            ]
-                        },
-                        {
-                            "name": "분당내곡로",
-                            "distance": 392,
-                            "duration": 62,
-                            "traffic_speed": 25.0,
-                            "traffic_state": 3,
-                            "vertexes": [
-                                127.11309181718316,
-                                37.39622538141045,
-                                127.11307829458244,
-                                37.39641450597087,
-                                127.1130803894646,
-                                37.398153598349445,
-                                127.11307964622586,
-                                37.39821666808455,
-                                127.1130784782746,
-                                37.3983157776669,
-                                127.11308594924428,
-                                37.39864022099831,
-                                127.11311303420219,
-                                37.39921711263319,
-                                127.11313041857109,
-                                37.39965877010523,
-                                127.11312925062586,
-                                37.399757879664605
-                            ]
-                        },
-                        {
-                            "name": "대왕판교로644번길",
-                            "distance": 124,
-                            "duration": 50,
-                            "traffic_speed": 20.0,
-                            "traffic_state": 3,
-                            "vertexes": [
-                                127.11312925062586,
-                                37.399757879664605,
-                                127.11274420726458,
-                                37.39984509856906,
-                                127.11173886656147,
-                                37.39985557194009
-                            ]
-                        },
-                        {
-                            "name": "",
-                            "distance": 559,
-                            "duration": 173,
-                            "traffic_speed": 13.0,
-                            "traffic_state": 2,
-                            "vertexes": [
-                                127.11173886656147,
-                                37.39985557194009,
-                                127.11175987981302,
-                                37.40094603107842,
-                                127.11174254485269,
-                                37.40241465350646,
-                                127.11170855662199,
-                                37.402423408918274,
-                                127.10967543155922,
-                                37.40242613861426,
-                                127.10863660151416,
-                                37.40240029023456
-                            ]
-                        },
-                        {
-                            "name": "",
-                            "distance": 15,
-                            "duration": 3,
-                            "traffic_speed": 16.0,
-                            "traffic_state": 0,
-                            "vertexes": [
-                                127.10863660151416,
-                                37.40240029023456,
-                                127.1086494963113,
-                                37.402265226201656
-                            ]
-                        }
-                    ],
-                    "guides": [
-                        {
-                            "name": "경유지",
-                            "x": 127.11341931516797,
-                            "y": 37.39622783738649,
-                            "distance": 0,
-                            "duration": 0,
-                            "type": 1000,
-                            "guidance": "판교테크노밸리 양재 내곡 방면으로 경유지",
-                            "road_index": 0
-                        },
-                        {
-                            "name": "판교역사거리",
-                            "x": 127.11309181718316,
-                            "y": 37.39622538141045,
-                            "distance": 29,
-                            "duration": 6,
-                            "type": 2,
-                            "guidance": "동판교IC 내곡,서울 방면으로 우회전",
-                            "road_index": 1
-                        },
-                        {
-                            "name": "삼평사거리",
-                            "x": 127.11312925062586,
-                            "y": 37.399757879664605,
-                            "distance": 392,
-                            "duration": 62,
-                            "type": 1,
-                            "guidance": "대왕판교로 경기창조경제혁신센터 방면으로 좌회전",
-                            "road_index": 2
-                        },
-                        {
-                            "name": "",
-                            "x": 127.11173886656147,
-                            "y": 37.39985557194009,
-                            "distance": 124,
-                            "duration": 50,
-                            "type": 2,
-                            "guidance": "우회전",
-                            "road_index": 3
-                        },
-                        {
-                            "name": "",
-                            "x": 127.10863660151416,
-                            "y": 37.40240029023456,
-                            "distance": 559,
-                            "duration": 173,
-                            "type": 1,
-                            "guidance": "좌회전",
-                            "road_index": 4
-                        },
-                        {
-                            "name": "목적지",
-                            "x": 127.1086494963113,
-                            "y": 37.402265226201656,
-                            "distance": 15,
-                            "duration": 3,
-                            "type": 101,
-                            "guidance": "목적지",
-                            "road_index": -1
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+  <h2>운전 경로 + 지점 마커 지도</h2>
+  <div id="map"></div>
 
+  <!-- 카카오 지도 SDK -->
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df"></script>
+
+  <script>
+    const positions = [
+      { name: "시목초등학교", coord: [126.2178, 36.7729] }, // 출발지
+      { name: "측후소아파트", coord: [126.2965, 36.7515] },
+      { name: "농협하나로마트 서부점", coord: [126.4490, 36.7945] },
+      { name: "소망교회", coord: [126.4500, 36.7800] },
+      { name: "미소지움아파트", coord: [126.3102, 36.7234] },
+      { name: "대진농기계", coord: [126.4101, 36.7078] },
+      { name: "남문 코아루아파트", coord: [126.4192, 36.7224] },
+      { name: "농어민마트", coord: [126.4407, 36.7339] },
+      { name: "반도상사", coord: [126.4292, 36.7501] },
+      { name: "죽이야기", coord: [126.4523, 36.7816] },
+      { name: "새빛마을 아파트", coord: [126.4459, 36.7603] },
+      { name: "평천휴먼시아 아파트", coord: [126.4179, 36.7483] },
+      { name: "동문코아루", coord: [126.4305, 36.7498] },
+      { name: "태안여자중학교", coord: [126.4521, 36.7437] },
+      { name: "CU태안다락미길", coord: [126.4182, 36.7678] },
+      { name: "동문4리경로당", coord: [126.4132, 36.7449] },
+      { name: "소원초등학교", coord: [126.2231, 36.8325] } // 도착지
+    ];
+
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+      center: new kakao.maps.LatLng(36.75, 126.42),
+      level: 9
+    };
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커 및 라벨 표시
+    positions.forEach((pos, idx) => {
+      const latlng = new kakao.maps.LatLng(pos.coord[1], pos.coord[0]);
+      const marker = new kakao.maps.Marker({
+        map,
+        position: latlng
+      });
+
+      const infowindow = new kakao.maps.InfoWindow({
+        content: `<div style="padding:5px;font-size:13px;">${idx + 1}. ${pos.name}</div>`
+      });
+      infowindow.open(map, marker);
+    });
+
+    // 출발지, 목적지, 경유지 좌표 추출
+    const origin = positions[0].coord.join(','); // 출발
+    const destination = positions[positions.length - 1].coord.join(','); // 도착
+    const waypoints = positions.slice(1, -1).map(p => p.coord.join(',')).join('|'); // 경유지들
+
+    // 카카오 모빌리티 REST API 호출
+    fetch(`https://apis-navi.kakaomobility.com/v1/directions?origin=${origin}&destination=${destination}&waypoints=${waypoints}&priority=RECOMMEND`, {
+      method: "GET",
+      headers: {
+        "Authorization": "KakaoAK 05f7822ea133ae0026dca0368c8ce751"
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.routes && data.routes.length > 0) {
+        const coords = data.routes[0].sections.flatMap(section =>
+          section.roads.flatMap(road => road.vertexes)
+        );
+
+        const path = [];
+        for (let i = 0; i < coords.length; i += 2) {
+          path.push(new kakao.maps.LatLng(coords[i + 1], coords[i]));
+        }
+
+        const polyline = new kakao.maps.Polyline({
+          path: path,
+          strokeWeight: 5,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeStyle: 'solid'
+        });
+
+        polyline.setMap(map);
+        map.setCenter(path[0]);
+      } else {
+        alert("경로 데이터를 불러오지 못했습니다.");
+      }
+    })
+    .catch(error => {
+      console.error("API 오류:", error);
+      alert("경로 불러오기 실패");
+    });
+  </script>
 </body>
 </html>
