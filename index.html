@@ -11,7 +11,9 @@
     <h2>카카오맵 경로 표시 예제</h2>
     <div id="map"></div>
 
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df"></script>
+    <!-- 최신 방식으로 스크립트 로드 -->
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df&libraries=services"></script>
+    
     <script>
         var mapContainer = document.getElementById('map'),
             mapOption = {
@@ -43,21 +45,16 @@
             new kakao.maps.LatLng(36.8325, 126.2231)  // 소원초등학교 (목적지)
         ];
 
-        // 길찾기 서비스 객체 생성
-        var directionsService = new kakao.maps.services.Directions();
-
-        // 길찾기 API 호출
-        var request = {
-            origin: start, // 출발지
-            destination: waypoints[waypoints.length - 1], // 마지막 경유지를 목적지로 설정
-            waypoints: waypoints.slice(0, waypoints.length - 1), // 경유지들
+        // 길찾기 API로 경로 요청
+        var routeService = new kakao.maps.services.Directions();
+        routeService.route({
+            origin: start,  // 출발지
+            destination: waypoints[waypoints.length - 1],  // 마지막 경유지를 목적지로 설정
+            waypoints: waypoints.slice(0, waypoints.length - 1),  // 경유지들
             travelMode: kakao.maps.services.DirectionsTravelMode.DRIVING, // 운전 경로
-        };
-
-        directionsService.route(request, function(result, status) {
+        }, function(result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 var path = result.routes[0].overview_path;
-
                 var polyline = new kakao.maps.Polyline({
                     path: path,
                     strokeWeight: 5,
@@ -68,7 +65,7 @@
 
                 polyline.setMap(map);
             } else {
-                alert('경로를 찾을 수 없습니다.');
+                console.log("경로를 찾을 수 없습니다.", status);
             }
         });
     </script>
