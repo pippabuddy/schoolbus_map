@@ -1,8 +1,8 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df&libraries=services&autoload=false"></script>
 <script type="text/javascript">
     window.onload = function() {
+        // 카카오 맵 API 로드
         kakao.maps.load(function() {
-            // 이곳에서 지도 및 API 기능 사용 시작
             var mapContainer = document.getElementById('map'),
                 mapOption = {
                     center: new kakao.maps.LatLng(36.5, 127.5), // 초기 중심 좌표
@@ -33,9 +33,11 @@
                 new kakao.maps.LatLng(36.8325, 126.2231)  // 소원초등학교 (목적지)
             ];
 
+            // Directions 서비스 객체 생성
+            var directionService = new kakao.maps.services.Directions();
+
             // 길찾기 API로 경로 요청
-            var routeService = new kakao.maps.services.Directions();
-            routeService.route({
+            directionService.route({
                 origin: start,  // 출발지
                 destination: waypoints[waypoints.length - 1],  // 마지막 경유지를 목적지로 설정
                 waypoints: waypoints.slice(0, waypoints.length - 1),  // 경유지들
