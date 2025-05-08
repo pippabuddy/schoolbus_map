@@ -1,73 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>순환노선도 지점 경로 표시</title>
-    <style>
-        #map { width: 100%; height: 800px; }
-    </style>
-</head>
-<body>
-    <h2>카카오맵 경로 표시 예제</h2>
-    <div id="map"></div>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df&libraries=services&autoload=false"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        kakao.maps.load(function() {
+            // 이곳에서 지도 및 API 기능 사용 시작
+            var mapContainer = document.getElementById('map'),
+                mapOption = {
+                    center: new kakao.maps.LatLng(36.5, 127.5), // 초기 중심 좌표
+                    level: 12
+                };
 
-    <!-- 최신 방식으로 스크립트 로드 -->
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a7612c82d93660f2ceaf39ed7f5484df&libraries=services"></script>
-    
-    <script>
-        var mapContainer = document.getElementById('map'),
-            mapOption = {
-                center: new kakao.maps.LatLng(36.5, 127.5), // 초기 중심 좌표
-                level: 12
-            };
+            var map = new kakao.maps.Map(mapContainer, mapOption);
 
-        var map = new kakao.maps.Map(mapContainer, mapOption);
+            // 출발지, 경유지들, 목적지 설정 (좌표로 입력)
+            var start = new kakao.maps.LatLng(36.7729, 126.2178); // 시목초등학교 (출발지)
+            var waypoints = [
+                new kakao.maps.LatLng(36.7515, 126.2965), // 측후소아파트
+                new kakao.maps.LatLng(36.7945, 126.4490), // 농협하나로마트 서부점
+                new kakao.maps.LatLng(36.7800, 126.4500), // 소망교회
+                new kakao.maps.LatLng(36.7234, 126.3102), // 태안 미소지움아파트
+                new kakao.maps.LatLng(36.7078, 126.4101), // 태안 대진농기계
+                new kakao.maps.LatLng(36.7224, 126.4192), // 태안 남문 코아루아파트
+                new kakao.maps.LatLng(36.7339, 126.4407), // 태안 농어민마트
+                new kakao.maps.LatLng(36.7501, 126.4292), // 태안 반도상사
+                new kakao.maps.LatLng(36.7816, 126.4523), // 태안 죽이야기
+                new kakao.maps.LatLng(36.7603, 126.4459), // 태안 새빛마을 아파트
+                new kakao.maps.LatLng(36.7483, 126.4179), // 태안 평천휴먼시아 아파트
+                new kakao.maps.LatLng(36.7498, 126.4305), // 태안 동문코아루
+                new kakao.maps.LatLng(36.7437, 126.4521), // 태안여자중학교
+                new kakao.maps.LatLng(36.7678, 126.4182), // CU태안다락미길
+                new kakao.maps.LatLng(36.7449, 126.4132), // 동문4리경로당
+                new kakao.maps.LatLng(36.7729, 126.2178), // 시목초등학교 (출발지와 동일)
+                new kakao.maps.LatLng(36.8325, 126.2231)  // 소원초등학교 (목적지)
+            ];
 
-        // 출발지, 경유지들, 목적지 설정 (좌표로 입력)
-        var start = new kakao.maps.LatLng(36.7729, 126.2178); // 시목초등학교 (출발지)
-        var waypoints = [
-            new kakao.maps.LatLng(36.7515, 126.2965), // 측후소아파트
-            new kakao.maps.LatLng(36.7945, 126.4490), // 농협하나로마트 서부점
-            new kakao.maps.LatLng(36.7800, 126.4500), // 소망교회
-            new kakao.maps.LatLng(36.7234, 126.3102), // 태안 미소지움아파트
-            new kakao.maps.LatLng(36.7078, 126.4101), // 태안 대진농기계
-            new kakao.maps.LatLng(36.7224, 126.4192), // 태안 남문 코아루아파트
-            new kakao.maps.LatLng(36.7339, 126.4407), // 태안 농어민마트
-            new kakao.maps.LatLng(36.7501, 126.4292), // 태안 반도상사
-            new kakao.maps.LatLng(36.7816, 126.4523), // 태안 죽이야기
-            new kakao.maps.LatLng(36.7603, 126.4459), // 태안 새빛마을 아파트
-            new kakao.maps.LatLng(36.7483, 126.4179), // 태안 평천휴먼시아 아파트
-            new kakao.maps.LatLng(36.7498, 126.4305), // 태안 동문코아루
-            new kakao.maps.LatLng(36.7437, 126.4521), // 태안여자중학교
-            new kakao.maps.LatLng(36.7678, 126.4182), // CU태안다락미길
-            new kakao.maps.LatLng(36.7449, 126.4132), // 동문4리경로당
-            new kakao.maps.LatLng(36.7729, 126.2178), // 시목초등학교 (출발지와 동일)
-            new kakao.maps.LatLng(36.8325, 126.2231)  // 소원초등학교 (목적지)
-        ];
+            // 길찾기 API로 경로 요청
+            var routeService = new kakao.maps.services.Directions();
+            routeService.route({
+                origin: start,  // 출발지
+                destination: waypoints[waypoints.length - 1],  // 마지막 경유지를 목적지로 설정
+                waypoints: waypoints.slice(0, waypoints.length - 1),  // 경유지들
+                travelMode: kakao.maps.services.DirectionsTravelMode.DRIVING, // 운전 경로
+            }, function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    var path = result.routes[0].overview_path;
+                    var polyline = new kakao.maps.Polyline({
+                        path: path,
+                        strokeWeight: 5,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 0.8,
+                        strokeStyle: 'solid'
+                    });
 
-        // 길찾기 API로 경로 요청
-        var routeService = new kakao.maps.services.Directions();
-        routeService.route({
-            origin: start,  // 출발지
-            destination: waypoints[waypoints.length - 1],  // 마지막 경유지를 목적지로 설정
-            waypoints: waypoints.slice(0, waypoints.length - 1),  // 경유지들
-            travelMode: kakao.maps.services.DirectionsTravelMode.DRIVING, // 운전 경로
-        }, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var path = result.routes[0].overview_path;
-                var polyline = new kakao.maps.Polyline({
-                    path: path,
-                    strokeWeight: 5,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.8,
-                    strokeStyle: 'solid'
-                });
-
-                polyline.setMap(map);
-            } else {
-                console.log("경로를 찾을 수 없습니다.", status);
-            }
+                    polyline.setMap(map);
+                } else {
+                    console.log("경로를 찾을 수 없습니다.", status);
+                }
+            });
         });
-    </script>
-</body>
-</html>
+    };
+</script>
